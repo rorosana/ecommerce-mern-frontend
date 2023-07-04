@@ -9,7 +9,7 @@ function Signup() {
   return (
     <Container>
       <Row>
-        <Col md={6} className="login__form--container">
+        <Col md={6} className="signup__form--container">
           <Form style={{ width: "100%" }}>
             <h1>Login to your account</h1>
             <Form.Group>
