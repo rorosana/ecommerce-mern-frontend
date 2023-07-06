@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import '../css/Signup.css';
 
-function Login() {
+function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  //function handlesubmit(){}
-
   return (
     <Container>
       <Row>
-        <Col md={6} className="login__form--container">
+        <Col md={6} className="signup__form--container">
           <Form style={{ width: "100%" }}>
             <h1>Login to your account</h1>
             <Form.Group>
@@ -44,10 +42,10 @@ function Login() {
             </p>
           </Form>
         </Col>
-        <Col md={6} className="login__image--container"></Col>
+        <Col md={6} className="signup__image--container"></Col>
       </Row>
     </Container>
   );
 }
 
-export default Login;
+export default Signup;
