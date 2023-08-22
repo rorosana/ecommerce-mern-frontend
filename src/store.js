@@ -31,4 +31,5 @@ const store = configureStore({
      middleware: [thunk, appAPI.middleware],
 });
 
+
 export default store;
