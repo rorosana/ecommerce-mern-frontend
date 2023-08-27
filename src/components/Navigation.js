@@ -29,7 +29,7 @@ function Navigation() {
               </LinkContainer>
             )}
             {/*if user*/}
-            {user ? (
+            {user && (
               <NavDropdown title={`${user.email}`} id="basic-nav-dropdown">
                 {user.isAdmin && (
                   <>
@@ -63,10 +63,6 @@ function Navigation() {
                 <NavDropdown.Divider />
                 <Button variant="danger" onClick={handleLogout} className="logout-btn">Logout</Button>
               </NavDropdown>
-            ) : (
-              <LinkContainer to="/login">
-                <Nav.Link>Login</Nav.Link>
-              </LinkContainer>
             )}
           </Nav>
         </Navbar.Collapse>
