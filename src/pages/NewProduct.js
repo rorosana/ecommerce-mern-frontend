@@ -16,8 +16,8 @@ function NewProduct() {
 
   function showWidget(){
     const widget = window.cloudinary.createUploadWidget({
-        cloudName: 'learn-code-10',
-        uploadPreset: "dcizdwph"
+        cloudName: 'ddkr2xw2j',
+        uploadPreset: "p3wgqjen"
     },
     (error, result) => {
         if(!error && result.event === "success"){
@@ -84,7 +84,7 @@ function NewProduct() {
 
             <Form.Group className="mb-3">
               <Button type="button" onClick={showWidget}>Upload Images</Button>
-              <div classname="images-preview-container">
+              <div className="images-preview-container">
                 {images.map((image) => (
                     <div className="image-preview">
                         < img src={image.url} />
