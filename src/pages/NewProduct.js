@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
+import axios from "../axios";
 import "../css/NewProduct.css";
 import { useCreateProductMutation } from "../services/appAPI";
 import { useNavigate, Link } from "react-router-dom";
@@ -6,13 +8,23 @@ import { Col, Container, Row, Form, Alert, Button } from "react-bootstrap";
 
 function NewProduct() {
   const [name, setName] = useState("");
-  const [description, seDescription] = useState("");
+  const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [images, setImages] = useState([]);
-  const [imgToRemove, setImgtoRemove] = useState(null);
+  const [imgToRemove, setImgToRemove] = useState(null);
   const navigate = useNavigate();
   const [createProduct, { isError, error, isLoading, isSuccess }] = useCreateProductMutation();
+
+  function handleRemoveImg(imgObj){
+    setImgToRemove(imgObj.public_id);
+    axios.delete(`/images/${imgObj.public_id}`)
+    .then((res) => {
+      setImgToRemove(null);
+      setImages(prev => prev.filter((img) => img.public_id !== imgObj.public_id));
+    })
+    .catch((e) => console.log(e));
+  }
 
   function showWidget(){
     const widget = window.cloudinary.createUploadWidget({
@@ -55,7 +67,7 @@ function NewProduct() {
                 style={{height:"100px"}}
                 value={description}
                 required
-                onChange={(e) => seDescription(e.target.value)}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </Form.Group>
 
@@ -85,10 +97,10 @@ function NewProduct() {
             <Form.Group className="mb-3">
               <Button type="button" onClick={showWidget}>Upload Images</Button>
               <div className="images-preview-container">
-                {images.map((image) => (
+                {images.map((img) => (
                     <div className="image-preview">
-                        < img src={image.url} />
-                        {/*add icon for removing */}
+                        < img src={img.url} />
+                        <i className="fa-solid fa-circle-xmark" onClick={ () =>handleRemoveImg(img) }></i>
                     </div>
                 ))}
               </div>
