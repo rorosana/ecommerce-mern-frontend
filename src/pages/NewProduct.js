@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/alt-text */
+
 import React, { useState } from "react";
 import axios from "../axios";
 import "../css/NewProduct.css";
@@ -111,10 +111,10 @@ function NewProduct() {
             <Form.Group className="mb-3">
               <Button type="button" onClick={showWidget}>Upload Images</Button>
               <div className="images-preview-container">
-                {images.map((img) => (
+                {images.map((image) => (
                     <div className="image-preview">
-                        < img src={img.url} />
-                        <i className="fa-solid fa-circle-xmark" onClick={ () =>handleRemoveImg(img) }></i>
+                        < img src={image.url} alt="img"/>
+                        {imgToRemove !== image.public_id && <i className="fa-solid fa-circle-xmark" onClick={ () =>handleRemoveImg(image) }></i>}
                     </div>
                 ))}
               </div>
